@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-page: #faf8f5;
+    --bg-surface: #ffffff;
+    --bg-elevated: #f4f1ea;
+    --accent: #b48a3c;
+    --accent-hover: #9c752f;
+    --border-subtle: rgba(24, 24, 27, 0.08);
+    --border-hairline: rgba(24, 24, 27, 0.14);
+    --border-accent: rgba(180, 138, 60, 0.45);
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-tertiary: #71717a;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #18181b;
+  background-color: #faf8f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.015em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Editorial Serif & Technical Monospace */
+.font-serif-editorial {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, Cambria, serif;
+}
+
+.font-mono-tech {
+  font-family: 'Space Mono', 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Architectural Blueprint Grid Backgrounds */
+.arch-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+.arch-grid-subtle {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(180, 138, 60, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180, 138, 60, 0.04) 1px, transparent 1px);
+}
+
+/* Drafting Crosshairs & Dimension Marks */
+.drafting-crosshair::before,
+.drafting-crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: #b48a3c;
+}
+
+.drafting-corner {
+  position: relative;
+}
+.drafting-corner::before {
+  content: '+';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: #9c752f;
+  line-height: 1;
+}
+
+/* Crisp Architectural Hairline Borders */
+.border-hairline {
+  border: 1px solid rgba(24, 24, 27, 0.12);
+}
+
+.border-hairline-b {
+  border-bottom: 1px solid rgba(24, 24, 27, 0.12);
+}
+
+.border-hairline-t {
+  border-top: 1px solid rgba(24, 24, 27, 0.12);
+}
+
+.border-hairline-r {
+  border-right: 1px solid rgba(24, 24, 27, 0.12);
+}
+
+.border-hairline-l {
+  border-left: 1px solid rgba(24, 24, 27, 0.12);
+}
+
+/* Architectural Image Frame */
+.arch-image-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: #ede9e0;
+}
+
+.arch-image-frame img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.arch-image-frame:hover img {
+  transform: scale(1.035);
+}
+
+/* Minimal glass navbar */
+.minimal-nav {
+  background: rgba(250, 248, 245, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(24, 24, 27, 0.1);
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf8f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d0c5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b48a3c;
+}
+
+/* Hide Next.js dev indicator badge */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dialog],
+[class*="nextjs-toast"] {
+  display: none !important;
 }
